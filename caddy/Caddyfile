@@ -1,0 +1,5 @@
+portainer.oasir.me {
+     reverse_proxy http://54.36.182.182:9000
+}
+
+tls cert.pem privkey.pem
