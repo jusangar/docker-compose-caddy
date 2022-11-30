@@ -1,9 +1,11 @@
 portainer.oasir.me {
-     reverse_proxy http://$[IP]:9000
+     reverse_proxy http://[IP]:9443
+     }
 }
 
-nextcloud.oasir.me {
-     reverse_proxy http://$[IP]:9000
-}
+# To proxy other services, use the following format:
+# [subdomain].[domain] {
+#     reverse_proxy http://[IP]:[PORT]
+# }
 
-tls cert.pem privkey.pem # Use Custom TLS Certificates
+tls cert.pem privkey.pem # Use Custom TLS Certificates instead of Caddy's Let's Encrypt
