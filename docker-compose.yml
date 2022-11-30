@@ -1,24 +1,21 @@
-services:
-   caddy:
-    image: caddy:latest
-    restart: unless-stopped
-    container_name: caddy
-    ports:
-      - '80:80'
-      - '443:443'
-    volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
-      - ./caddy/site:/srv
-      - ./caddy/caddy_data:/data
-      - ./caddy/caddy_config:/config
+networks:
+  frontend: # Name of the network
+    external: true # Use an existing network
 
 volumes:
   caddy_data:
-    external: true
   caddy_config:
 
-
-networks:
-  default:
-    external: true
-    name: noctis
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: always
+    volumes:
+      - /root/s-caddy/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - /root/s-caddy/caddy/site:/srv
+      - /root/s-caddy/caddy/caddy_data:/data
+      - /root/s-caddy/caddy/caddy_config:/config
+    ports:
+      - '80:80'
+      - '443:443'
